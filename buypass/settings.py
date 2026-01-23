@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'silk',
     'rest_framework.authtoken',
     'django_extensions',
-    'django_filters'
+
     # 'rest_framework_simplejwt',
     # 'rest_framework_simplejwt.token_blacklist',
 ]
