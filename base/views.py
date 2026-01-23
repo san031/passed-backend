@@ -7,8 +7,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
-from base.filters import SpotFilter
-from django_filters.rest_framework import DjangoFilterBackend
+# from base.filters import SpotFilter
+# from django_filters.rest_framework import DjangoFilterBackend
 
 
 
@@ -67,7 +67,7 @@ class AddAttractionsViewSet(viewsets.ViewSet):
         serializer = self.serializer_class(query_set,many = True)
         # filter_backends = [DjangoFilterBackend]
         # filterset_class = SpotFilter
-        filterset_fields = ('title','category','location')
+        # filterset_fields = ('title','category','location')
         print(query_set)
         return Response(serializer.data)
 
