@@ -13,6 +13,9 @@ __pycache__/
 db.sqlite3
 media/
 staticfiles/
+build/
+lib/
+lib64/
 
 # Ignore the local environment and IDE settings
 .env
