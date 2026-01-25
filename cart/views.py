@@ -30,6 +30,7 @@ class TourCartItemViewSet(viewsets.ViewSet):
     def addtocart(self, request,*args, **kwargs):
         
         spot_id = request.data.get('touristSpot')
+        print(f"user : {request.user}")
 
         if not spot_id :
             return Response("Spot ID required", status=400)
@@ -42,6 +43,7 @@ class TourCartItemViewSet(viewsets.ViewSet):
             serializer = self.serializer_class(data=request.data)
             # print(serializer)
             if serializer.is_valid():
+                
                 serializer.save(cart=cart, touristSpot=spot)
                 return Response(serializer.data, status=201)
             
@@ -57,15 +59,16 @@ class TourCartItemViewSet(viewsets.ViewSet):
                 }, status=500)
         
     def updatecart_item(self,request, pk=None):
-        cartitem = Cart.objects.get(user = request.user, id = pk)
-        serializer = CartSerializer( cartitem, data = request.data)
+        cartitem = TourCartItem.objects.get(cart__user = request.user.id, pk = pk)
+        print(f"update cartitem:{cartitem}")
+        serializer = CartSerializer( cartitem, data = request.data,partial = True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=201)
 
     def remove_item(self,request,pk=None):
         try:
-            cartitem = Cart.objects.get(user = request.user,pk=pk)
+            cartitem = TourCartItem.objects.get(cart__user = request.user,pk=pk)
             cartitem.delete()
             return Response("Item removed from cart",status=204)
         except cartitem.DoesNotExist:

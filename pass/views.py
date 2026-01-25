@@ -21,6 +21,14 @@ class passedViewset(viewsets.ViewSet):
         serializer = self.serializer_class(queryset, many= True)
         return Response(serializer.data)
     
+
+    def passdetail(self,request,pk=None,*args, **kwargs):
+        qs = passed.objects.filter(user = request.user, id=pk)
+        serializer = self.serializer_class(qs, many=True)
+
+        return Response(serializer.data)
+
+    
     def generatepasscode(self,request,*args,**kwargs):
 
         user = request.user
@@ -54,7 +62,7 @@ class passedViewset(viewsets.ViewSet):
             # qs,_ = passed.objects.get_or_create(user = request.user)
             print(request.data)
             cart_items.delete()
-            serializer = self.serializer_class(userPass, many=True)
+            serializer = self.serializer_class(userPass )
             # print(serializer)
                 # print(serializer.data)
             return Response(serializer.data, status=201)

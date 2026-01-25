@@ -11,4 +11,7 @@ def run():
     # print(TourCartItem.objects.values('touristSpot'))
     # print(TourCartItem.objects.values_list('touristSpot',flat=True))
     # print(TourCartItem.objects.get('touristSpot'))
-    pprint(connection.queries)
+    # print(Cart.objects.get())
+    # print(TourCartItem.objects.filter(cart__user = 3 , pk = 9))
+    print(TourCartItem.objects.filter(cart__user =4))
+    # pprint(connection.queries)

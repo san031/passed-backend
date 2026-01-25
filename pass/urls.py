@@ -4,4 +4,5 @@ from .views import *
 urlpatterns = [
     path('viewpass/', passedViewset.as_view({'get': 'list'})),
     path('passed/',passedViewset.as_view({'post':'generatepasscode'})),
+    path('passdetail/<int:pk>/',passedViewset.as_view({'get':'passdetail'}))
 ]

@@ -165,4 +165,4 @@ AUTH_USER_MODEL='base.User'
 AUTHENTICATION_BACKEND=['base.auth_backend.EmailBackend']
 # finds and authenticates a user when they try to log in with a username and password
 
-LOGIN_REDIRECT_URL = '/profile/'
+LOGIN_REDIRECT_URL = '/profile'
