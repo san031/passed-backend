@@ -22,6 +22,8 @@ MIDDLEWARE = [
     'silk.middleware.SilkyMiddleware',
 ]
 
+CORS_ALLOWED_ORIGINS=['https://passed-frontend.onrender.com']
+
 
 STORAGES = {
     "default":{
@@ -39,3 +41,4 @@ DATABASES = {
         conn_max_age=600
     )
 }
+
