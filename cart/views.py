@@ -1,4 +1,4 @@
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions,status
 from .models import *
 from .serializers import *
 from rest_framework.response import Response
@@ -18,7 +18,7 @@ class UserCart(viewsets.ViewSet):
      
 
 class TourCartItemViewSet(viewsets.ViewSet):
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
     queryset = TourCartItem.objects.all()
     serializer_class = TourCartItemSerializer
 
@@ -59,16 +59,23 @@ class TourCartItemViewSet(viewsets.ViewSet):
                 }, status=500)
         
     def updatecart_item(self,request, pk=None):
-        cartitem = TourCartItem.objects.get(cart__user = request.user.id, pk = pk)
-        print(f"update cartitem:{cartitem}")
-        serializer = CartSerializer( cartitem, data = request.data,partial = True)
+        self.permission_classes = [permissions.IsAuthenticated]    
+        print(f"requestDataupdate cart {request.data}") 
+        cartitem = TourCartItem.objects.get(pk = pk)
+        print(f"cartitemupdatecart : {cartitem}")
+        serializer = TourCartItemSerializer( cartitem, data = request.data,partial=True)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=201)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response("Invalid Data", status=status.HTTP_400_BAD_REQUEST)
+        
 
     def remove_item(self,request,pk=None):
+        print(f"removeitem{request.user}")
+        self.permission_classes = [permissions.IsAuthenticated]
         try:
-            cartitem = TourCartItem.objects.get(cart__user = request.user,pk=pk)
+            
+            cartitem = TourCartItem.objects.filter(pk=pk)
             cartitem.delete()
             return Response("Item removed from cart",status=204)
         except cartitem.DoesNotExist:

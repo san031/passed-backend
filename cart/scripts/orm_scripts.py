@@ -13,5 +13,5 @@ def run():
     # print(TourCartItem.objects.get('touristSpot'))
     # print(Cart.objects.get())
     # print(TourCartItem.objects.filter(cart__user = 3 , pk = 9))
-    print(TourCartItem.objects.filter(cart__user =4))
+    print(TourCartItem.objects.get(pk=50))
     # pprint(connection.queries)

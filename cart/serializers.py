@@ -11,7 +11,7 @@ class TourCartItemSerializer(serializers.ModelSerializer):
         read_only_fields = ['cart']
       
 
-
+ 
 class CartSerializer(serializers.ModelSerializer):
     items = TourCartItemSerializer(many=True, read_only = True)
 
