@@ -24,7 +24,11 @@ urlpatterns = [
       path('cart/',include('cart.urls')),
       path('pass/',include('pass.urls')),
       path('silk/', include('silk.urls', namespace='silk'))
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [
     path('api-auth/', include('rest_framework.urls')),

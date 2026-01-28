@@ -97,7 +97,7 @@ class addAttractions(models.Model):
         return str(self.my_id)
     
 def upload_path(instance, filename):
-        return '/'.join(['spotImage', str(instance.spot.title), filename])
+        return '/'.join(['spotImage',str(instance.spot.title),filename])
 
 class spotImage(models.Model):
     spot = models.ForeignKey(addAttractions, on_delete=models.CASCADE,related_name='images')
