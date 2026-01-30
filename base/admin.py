@@ -9,6 +9,13 @@ from base.models import User
 # class ProfileAdmin(admin.ModelAdmin):
 #     list_display = ['user','full_name']
 
+class ImageInline(admin.TabularInline):
+    model = spotImage
+    extra = 1
+
+class SpotsAdmin(admin.ModelAdmin):
+    inlines = [ImageInline]
+
 class PassAdmin(admin.ModelAdmin):
     list_display = ['get_email','get_user']
 
@@ -30,6 +37,6 @@ admin.site.register(buyPass,PassAdmin)
 admin.site.register(User)
 # admin.site.register(PassAdmin)
 # admin.site.register(buyPass)
-admin.site.register(addAttractions)
+admin.site.register(addAttractions,SpotsAdmin)
 admin.site.register(visitingData)
 admin.site.register(spotImage)
