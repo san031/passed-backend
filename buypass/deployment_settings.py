@@ -24,20 +24,15 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS=['https://passed-frontend.onrender.com']
 
-CLOUDINARY_STORAGE ={
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET')
-}
-MEDIA_URL = '/media/'
 
 STORAGES = {
-    "default": {
-        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    "default":{
+        "BACKEND" : "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND" : "whitenoise.storage.CompressedStaticFilesStorage",
     },
+
 }
 
 DATABASES = {
