@@ -14,10 +14,19 @@ from pathlib import Path
 import os
 from datetime import timedelta
 from django.conf import settings
-
+import cloudinary_storage
+from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv(os.path.join(BASE_DIR, '.env'))
+
+
+
+#cloudinary imports
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -48,6 +57,9 @@ INSTALLED_APPS = [
     'silk',
     'rest_framework.authtoken',
     'django_extensions',
+    'cloudinary_storage',
+    'cloudinary',
+    
 
     # 'rest_framework_simplejwt',
     # 'rest_framework_simplejwt.token_blacklist',
@@ -93,6 +105,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        'OPTIONS': {
+            'timeout': 20,  # Increases timeout to 20 seconds
+        },
     }
 }
 
@@ -166,3 +181,21 @@ AUTHENTICATION_BACKEND=['base.auth_backend.EmailBackend']
 # finds and authenticates a user when they try to log in with a username and password
 
 LOGIN_REDIRECT_URL = '/profile'
+
+
+# cloudinary-django integration
+CLOUDINARY_STORAGE ={
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET')
+}
+
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "cloudinary_storage.storage.StaticHashedCloudinaryStorage",
+    },
+}
