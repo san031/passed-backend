@@ -24,6 +24,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS=['https://passed-frontend.onrender.com']
 
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 STORAGES = {
     "default":{
