@@ -42,7 +42,7 @@ class TourCartItemViewSet(viewsets.ViewSet):
             
             serializer = self.serializer_class(data=request.data)
             # print(serializer)
-            if serializer.is_valid():
+            if serializer.is_valid(raise_exception=True):
                 
                 serializer.save(cart=cart, touristSpot=spot)
                 return Response(serializer.data, status=201)

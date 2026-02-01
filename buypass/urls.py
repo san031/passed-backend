@@ -22,10 +22,12 @@ urlpatterns = [
       path('admin/', admin.site.urls),
       path('', include('base.urls')),
       path('cart/',include('cart.urls')),
-      path('pass/',include('pass.urls')),
-      path('silk/', include('silk.urls', namespace='silk'))
+      path('pass/',include('pass.urls'))
 ]
 # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns +=[path('silk/', include('silk.urls', namespace='silk'))]
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

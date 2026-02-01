@@ -47,16 +47,15 @@ INSTALLED_APPS = [
     'cart',
     'pass',
     'rest_framework',
-    'silk',
     'rest_framework.authtoken',
     'django_extensions',
     'cloudinary_storage',
     'cloudinary',
-    
-
-    # 'rest_framework_simplejwt',
-    # 'rest_framework_simplejwt.token_blacklist',
 ]
+
+
+if DEBUG:
+    INSTALLED_APPS += ['silk']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -67,8 +66,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'silk.middleware.SilkyMiddleware',
 ]
+
+if DEBUG:
+    MIDDLEWARE += ['silk.middleware.SilkyMiddleware']
 
 ROOT_URLCONF = 'buypass.urls'
 
