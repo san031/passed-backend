@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'pass',
     'rest_framework',
     'rest_framework.authtoken',
-    'django_extensions',
     'cloudinary_storage',
     'cloudinary',
 ]
