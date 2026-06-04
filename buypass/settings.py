@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'cloudinary_storage',
     'cloudinary',
-    'schema_viewer',
+
 ]
 
 
