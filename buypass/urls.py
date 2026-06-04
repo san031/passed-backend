@@ -23,7 +23,7 @@ urlpatterns = [
       path('', include('base.urls')),
       path('cart/',include('cart.urls')),
       path('pass/',include('pass.urls')),
-    #   path('schema-viewer/', include('schema_viewer.urls')),
+      path('schema-viewer/', include('schema_viewer.urls')),
 ]
 # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # if settings.DEBUG:

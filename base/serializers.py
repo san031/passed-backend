@@ -107,7 +107,7 @@ class addAttractionsSerializer(serializers.ModelSerializer):
 class visitingDataSerializer(serializers.ModelSerializer):
     # tourist_Spot = addAttractionsSerializer( read_only=True)
     visitingSpot = addAttractionsSerializer(read_only = True)
-    
+     
     class Meta:
         model = visitingData
         fields = ['user','start_date','end_date','members','visitingSpot']

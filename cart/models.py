@@ -24,7 +24,7 @@ class TourCartItem(models.Model):
     #     if value.start_date>value.end_date:
     #         raise serializers.ValidationError("Start date must be less than end date")
         
-    #     return value
+    #     return value 
 
     
     class Meta:
